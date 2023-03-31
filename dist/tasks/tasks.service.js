@@ -14,19 +14,50 @@ let TasksService = class TasksService {
     constructor() {
         this.tasks = [];
     }
+    createTask(createTaskDto) {
+        const { title, description } = createTaskDto;
+        const task = {
+            id: (0, uuid_1.v4)(),
+            title: title,
+            description: description,
+            status: task_model_1.TaskStatus.OPEN,
+        };
+        this.tasks.push(task);
+        return task;
+    }
     getAllTasks() {
         return this.tasks;
     }
-    createTask(title, description) {
-        const task = {
-            id: (0, uuid_1.v4)(),
-            title,
-            description,
-            status: task_model_1.TaskStatus.OPEN,
-        };
-        console.log(task);
-        this.tasks.push(task);
+    getTasksWithFilters(filterDto) {
+        const { status, search } = filterDto;
+        let tasks = this.getAllTasks();
+        if (status) {
+            tasks = tasks.filter((task) => task.status === status);
+        }
+        if (search) {
+            tasks = tasks.filter((task) => {
+                if (task.title.includes(search) || task.description.includes(search)) {
+                    return true;
+                }
+                return false;
+            });
+        }
+        return tasks;
+    }
+    getTaskById(id) {
+        return this.tasks.find((task) => task.id === id);
+    }
+    updateTaskStatus(id, status) {
+        const task = this.getTaskById(id);
+        task.status = status;
         return task;
+    }
+    deleteTask(id) {
+        const taskIndex = this.tasks.findIndex((task) => task.id === id);
+        if (taskIndex >= 0) {
+            this.tasks.splice(taskIndex, 1);
+            return true;
+        }
     }
 };
 TasksService = __decorate([
