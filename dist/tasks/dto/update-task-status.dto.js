@@ -9,20 +9,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GetTasksFilterDto = void 0;
+exports.UpdateTaskStatusDto = void 0;
 const class_validator_1 = require("class-validator");
 const task_model_1 = require("../task.model");
-class GetTasksFilterDto {
+class UpdateTaskStatusDto {
 }
 __decorate([
-    (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsEnum)(task_model_1.TaskStatus),
     __metadata("design:type", String)
-], GetTasksFilterDto.prototype, "status", void 0);
-__decorate([
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsString)(),
-    __metadata("design:type", String)
-], GetTasksFilterDto.prototype, "search", void 0);
-exports.GetTasksFilterDto = GetTasksFilterDto;
-//# sourceMappingURL=get-tasks-filter.dto.js.map
+], UpdateTaskStatusDto.prototype, "status", void 0);
+exports.UpdateTaskStatusDto = UpdateTaskStatusDto;
+//# sourceMappingURL=update-task-status.dto.js.map

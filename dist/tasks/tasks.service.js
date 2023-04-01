@@ -45,7 +45,11 @@ let TasksService = class TasksService {
         return tasks;
     }
     getTaskById(id) {
-        return this.tasks.find((task) => task.id === id);
+        const found = this.tasks.find((task) => task.id === id);
+        if (!found) {
+            throw new common_1.NotFoundException(`Task with ID ${id} not found`);
+        }
+        return found;
     }
     updateTaskStatus(id, status) {
         const task = this.getTaskById(id);
@@ -53,7 +57,8 @@ let TasksService = class TasksService {
         return task;
     }
     deleteTask(id) {
-        const taskIndex = this.tasks.findIndex((task) => task.id === id);
+        const found = this.getTaskById(id);
+        const taskIndex = this.tasks.findIndex((task) => task.id === found.id);
         if (taskIndex >= 0) {
             this.tasks.splice(taskIndex, 1);
             return true;
