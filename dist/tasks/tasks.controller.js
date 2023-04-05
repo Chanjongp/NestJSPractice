@@ -23,12 +23,7 @@ let TasksController = class TasksController {
         this.tasksService = tasksService;
     }
     getTasks(filterDto) {
-        if (Object.keys(filterDto).length) {
-            return this.tasksService.getTasksWithFilters(filterDto);
-        }
-        else {
-            return this.tasksService.getAllTasks();
-        }
+        return this.tasksService.getTasks(filterDto);
     }
     getTaskById(id) {
         return this.tasksService.getTaskById(id);
@@ -49,21 +44,21 @@ __decorate([
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [get_tasks_filter_dto_1.GetTasksFilterDto]),
-    __metadata("design:returntype", Array)
+    __metadata("design:returntype", Promise)
 ], TasksController.prototype, "getTasks", null);
 __decorate([
     (0, common_1.Get)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Object)
+    __metadata("design:returntype", Promise)
 ], TasksController.prototype, "getTaskById", null);
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_task_dto_1.CreateTaskDto]),
-    __metadata("design:returntype", Object)
+    __metadata("design:returntype", Promise)
 ], TasksController.prototype, "createTask", null);
 __decorate([
     (0, common_1.Patch)('/:id/status'),
@@ -71,14 +66,14 @@ __decorate([
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, update_task_status_dto_1.UpdateTaskStatusDto]),
-    __metadata("design:returntype", Object)
+    __metadata("design:returntype", Promise)
 ], TasksController.prototype, "updateTaskStatus", null);
 __decorate([
     (0, common_1.Delete)('/:id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Boolean)
+    __metadata("design:returntype", Promise)
 ], TasksController.prototype, "deleteTaskById", null);
 TasksController = __decorate([
     (0, common_1.Controller)('tasks'),
