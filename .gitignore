@@ -1,5 +1,7 @@
 # dist
+dists/
 dist/
+
 
 # dependencies
 node_modules/
